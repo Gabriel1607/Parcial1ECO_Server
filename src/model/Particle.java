@@ -1,13 +1,11 @@
 package model;
-import processing.core.PApplet;
 
 public class Particle {
 private float posX,posY,dirX,dirY;
 private int size,spd,r,g,b,parNum;
 private String grupo;
-PApplet app;
 
-	public Particle(float posX, float posY, int r, int g, int b,String grupo, int parNum, PApplet app) {
+	public Particle(float posX, float posY, int r, int g, int b,String grupo, int parNum) {
         this.posX = posX;
         this.posY = posY;
         this.dirX = 0;
@@ -17,40 +15,13 @@ PApplet app;
         this.r = r;
         this.g = g;
         this.b = b;
-        this.app = app;
         this.grupo = grupo;
         this.parNum = parNum;
     }
 
     public Particle() {
     }
-public void draw(){
-        app.fill(r,g,b);
-        app.circle(posX,posY,size);
-}
-public void randomDir(float rndX, float rndY){
-        //Diferencia entre vectores
-    dirX=rndX-this.posX;
-    dirY=rndY-this.posY;
-    //Normalizar el vector para que valga 1 o -1
-    float dist = (float) Math.sqrt(dirX * dirX + dirY * dirY);
-    if(dist != 0.0) {
-        dirX /= dist;
-        dirY /= dist;
-    }
 
-
-}
-public void move(){
-    posX+=dirX*spd;
-    posY+=dirY*spd;
-    if(posX>app.width||0>posX) {
-        dirX=-dirX;
-    }
-    if(posY>app.height||0>posY) {
-        dirY=-dirY;
-    }
-}
 
 
     public float getPosX() {

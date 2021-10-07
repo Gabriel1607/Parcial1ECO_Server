@@ -57,7 +57,7 @@ public void initServer() {
 					while (true) {
 						System.out.println("Esperando mensaje....");
 						String line = lectorcito.readLine();
-						// System.out.println("Recibido: " + line);
+						//System.out.println("Recibido: " + line);
 						Gson gson = new Gson();
 						Particle p = gson.fromJson(line, Particle.class);
 						System.out.println("posiciones    "+p.getPosX()+" "+p.getPosY());
