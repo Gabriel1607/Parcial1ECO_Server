@@ -68,15 +68,25 @@ public void initServer() {
 					while (true) {
 						System.out.println("Esperando mensaje....");
 						String line = lectorcito.readLine();
-						//System.out.println("Recibido: " + line);
+						
+							
+						System.out.println("Recibido: " + line);
 						Gson gson = new Gson();
+						if(line.contains("borrar")) {
+							System.out.println("esverdad");
+							for (int i = 0; i < particulas.size(); i++) {
+								particulas.clear();
+							
+						} 
+						}else {
 						//Particle es la clase que existe en android y eclipse,
 						//pero como en Android no sé implementar Processing sin dañar todo
 						//es necesario la creación de una nueva clase, la clase Particula
 						Particle p = gson.fromJson(line, Particle.class);
 						createParticulas(p.getPosX(),p.getPosY(),p.getR(),p.getG(),p.getB(),p.getGrupo(),p.getParNum());
-						System.out.println(particulas.size());
+						
 					}
+						}
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -99,7 +109,6 @@ public void dibujarYmoverParticulas() {
 	for (int i = 0; i < particulas.size(); i++) {
 		rndX = random(1,999);
 		rndY = random(1,999);
-	System.out.println(particulas.get(i).getR());
 		drawParticle(particulas.get(i));
 		randomDirParticle(particulas.get(i),rndX,rndY);
 		moveParticle(particulas.get(i));
