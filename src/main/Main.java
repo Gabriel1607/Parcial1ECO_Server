@@ -23,7 +23,7 @@ public class Main extends PApplet {
 	private BufferedReader lectorcito;
 	private ArrayList<Particula> particulas;
 	PApplet app;
-	Particula je;
+	
 
 	public static void main(String[] args) {
 		PApplet.main("main.Main");
@@ -36,13 +36,14 @@ public void setup() {
 	
 	particulas = new ArrayList<Particula>();
 	initServer();
-	je = new Particula(500,500,255,0,0,"rupo 1",app);
+
 	
 	}
 public void draw() {
 	background(0);
 	
 	dibujarYmoverParticulas();
+	sayGroup();
 }
 public void initServer() {
 	new Thread(
@@ -73,10 +74,8 @@ public void initServer() {
 						System.out.println("Recibido: " + line);
 						Gson gson = new Gson();
 						if(line.contains("borrar")) {
-							System.out.println("esverdad");
 							for (int i = 0; i < particulas.size(); i++) {
 								particulas.clear();
-							
 						} 
 						}else {
 						//Particle es la clase que existe en android y eclipse,
@@ -135,6 +134,7 @@ public void randomDirParticle(Particula p,float rndX, float rndY) {
 }
 //METODO PA QUE LAS PARTICULAS SE MUEVAN
 public void moveParticle(Particula p) {
+	if(!p.getTateQuieto()) {
 	 p.setPosX(p.getPosX()+p.getDirX()*p.getSpd());
 	 p.setPosY(p.getPosY()+p.getDirY()*p.getSpd());
      if(p.getPosX()>width||0>p.getPosX()) {
@@ -143,5 +143,23 @@ public void moveParticle(Particula p) {
      if(p.getPosY()>height||0>p.getPosY()) {
     	 p.setDirY(p.getDirY()-p.getDirY());
      }
+}}
+public void sayGroup() {
+	for (int i = 0; i < particulas.size(); i++) {
+		if(dist(mouseX,mouseY,particulas.get(i).getPosX(),particulas.get(i).getPosY())<20) {
+			particulas.get(i).setTateQuieto(true);
+			particulas.get(i).setDirX(0);
+			particulas.get(i).setDirY(0);
+			/*float posXactual=particulas.get(i).getPosX();
+			float posYactual=particulas.get(i).getPosY();
+			particulas.get(i).setPosX(posXactual);
+			particulas.get(i).setPosY(posYactual);*/
+			fill(255);
+			text(particulas.get(i).getGrupo(),particulas.get(i).getPosX(),particulas.get(i).getPosY());
+		}else {
+			particulas.get(i).setTateQuieto(false);
+		}
+		
+	}
 }
 }

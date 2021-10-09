@@ -6,6 +6,7 @@ public class Particula {
 	private float posX,posY,dirX,dirY;
 	private int size,spd,r,g,b;
 	private String grupo;
+	private Boolean tateQuieto;
 	PApplet app;
 
 		public Particula(float posX, float posY, int r, int g, int b,String grupo, PApplet app) {
@@ -20,7 +21,7 @@ public class Particula {
 	        this.g = g;
 	        this.b = b;
 	        this.grupo = grupo;
-	       
+	       this.setTateQuieto(false);
 	    }
 		
 	    public int getSize() {
@@ -102,6 +103,14 @@ public class Particula {
 		}
 		public void setGrupo(String grupo) {
 			this.grupo = grupo;
+		}
+
+		public Boolean getTateQuieto() {
+			return tateQuieto;
+		}
+
+		public void setTateQuieto(Boolean tateQuieto) {
+			this.tateQuieto = tateQuieto;
 		}
 	    
 }
