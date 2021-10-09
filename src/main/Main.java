@@ -69,9 +69,7 @@ public void initServer() {
 					while (true) {
 						System.out.println("Esperando mensaje....");
 						String line = lectorcito.readLine();
-						
-							
-						System.out.println("Recibido: " + line);
+						//System.out.println("Recibido: " + line);
 						Gson gson = new Gson();
 						if(line.contains("borrar")) {
 							for (int i = 0; i < particulas.size(); i++) {
@@ -150,10 +148,6 @@ public void sayGroup() {
 			particulas.get(i).setTateQuieto(true);
 			particulas.get(i).setDirX(0);
 			particulas.get(i).setDirY(0);
-			/*float posXactual=particulas.get(i).getPosX();
-			float posYactual=particulas.get(i).getPosY();
-			particulas.get(i).setPosX(posXactual);
-			particulas.get(i).setPosY(posYactual);*/
 			fill(255);
 			text(particulas.get(i).getGrupo(),particulas.get(i).getPosX(),particulas.get(i).getPosY());
 		}else {
